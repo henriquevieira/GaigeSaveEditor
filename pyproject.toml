@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "gaige-save-editor"
+version = "0.1.0"
+description = "Borderlands 2 save editor developed in Python, focused on Linux and Steam Proton."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Henrique Vieira" }
+]
+
+keywords = [
+    "borderlands",
+    "borderlands-2",
+    "save-editor",
+    "proton",
+    "steam",
+    "linux",
+]
+
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX :: Linux",
+    "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+    "typer>=0.12",
+    "rich>=13.7",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+    "mypy>=1.10",
+]
+
+
+[project.scripts]
+gaige = "gaige.cli:app"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v"
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
